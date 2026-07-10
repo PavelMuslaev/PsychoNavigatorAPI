@@ -50,6 +50,7 @@ class TestTests:
         [
             (-1, 422),
             (0, 422),
+            ("abc", 422),
         ],
     )
     def test_get_test_returns_422_id(self, test_id, answer):
