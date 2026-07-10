@@ -1,4 +1,19 @@
-tests = [
+from typing import TypedDict
+
+
+class Test(TypedDict):
+    """
+    :param id: ID of the test.
+    :param name: Name of the test.
+    :param description: Description of the test.
+    """
+
+    id: int
+    name: str
+    description: str
+
+
+tests: list[Test] = [
     {
         "id": 1,
         "name": "Тест Nastya Loxic?",
@@ -33,18 +48,3 @@ tests = [
         " герой любых приключений за столом.",
     },
 ]
-
-
-from typing import TypedDict
-
-
-class Test(TypedDict):
-    """
-    :param id: ID of the test.
-    :param name: Name of the test.
-    :param description: Description of the test.
-    """
-
-    id: int
-    name: str
-    description: str
