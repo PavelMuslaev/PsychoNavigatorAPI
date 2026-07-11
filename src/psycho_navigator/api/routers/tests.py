@@ -17,4 +17,4 @@ async def get_test(test_id: Annotated[int, Path(ge=1)]) -> Test:
     for i in tests:
         if i["id"] == test_id:
             return i
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Test Not found.")
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Test not found.")
