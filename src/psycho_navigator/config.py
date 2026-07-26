@@ -1,13 +1,16 @@
-from pydantic_settings import BaseSettings
-from typing import LiteralString, Literal
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Literal
 from functools import lru_cache
 
 
 class Settings(BaseSettings):
-    app_name: str = "Psycho Navigator API"
-    app_version: str = "0.1.0"
-    app_environment: Literal["local", "test", "production"] = "local"
-    debug: bool = False
+    model_config = SettingsConfigDict(
+        env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
+    app_name: str
+    app_version: str
+    app_environment: Literal["local", "test", "production"]
+    debug: bool
 
 
 @lru_cache()
