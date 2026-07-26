@@ -1,5 +1,13 @@
 from fastapi import FastAPI
-from psycho_navigator.api.routers.tests import router as tests_router
+from psycho_navigator.config import get_settings, Settings
+from psycho_navigator.api.routers import get_router
 
-app = FastAPI()
-app.include_router(tests_router)
+
+def create_app(setting: Settings, *routers) -> FastAPI:
+    app = FastAPI(**setting.model_dump())
+    for i in routers:
+        app.include_router(i)
+    return app
+
+
+app = create_app(get_settings(), get_router())
