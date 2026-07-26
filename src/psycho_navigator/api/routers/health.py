@@ -7,7 +7,7 @@ from typing import Annotated
 router = APIRouter(prefix="/health", tags=["health"])
 
 
-@router.get("/", response_model=HealthResponse)
+@router.get("", response_model=HealthResponse)
 async def get_health(
     settings: Annotated[Settings, Depends(get_settings)],
 ) -> HealthResponse:

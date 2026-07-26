@@ -3,11 +3,11 @@ from psycho_navigator.config import get_settings, Settings
 from psycho_navigator.api.routers import get_router
 
 
-def create_app(setting: Settings, *routers: APIRouter) -> FastAPI:
+def create_app(settings: Settings, *routers: APIRouter) -> FastAPI:
     application = FastAPI(
-        title=setting.app_name,
-        version=setting.app_version,
-        debug=setting.debug,
+        title=settings.app_name,
+        version=settings.app_version,
+        debug=settings.debug,
     )
     for i in routers:
         application.include_router(i)
