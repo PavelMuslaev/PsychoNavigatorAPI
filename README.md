@@ -36,13 +36,13 @@ Copy-Item .env.example .env
 Start the development server:
 
 ```powershell
-fastapi dev src/psycho_navigator/main.py
+uv run fastapi dev src/psycho_navigator/main.py
 ```
 
 After startup, the API is available at:
 
 - Swagger UI: http://127.0.0.1:8000/docs
-- Health endpoint: http://127.0.0.1:8000/health/
+- Health endpoint: http://127.0.0.1:8000/health
 
 ## Checks
 

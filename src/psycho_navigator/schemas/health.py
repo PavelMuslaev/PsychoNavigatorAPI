@@ -5,4 +5,4 @@ from typing import Literal
 class HealthResponse(BaseModel):
     status: Literal["ok"]
     version: str
-    environment: str
+    environment: Literal["local", "test", "production"]

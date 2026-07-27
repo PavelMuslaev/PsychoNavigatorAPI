@@ -9,8 +9,8 @@ def create_app(settings: Settings, *routers: APIRouter) -> FastAPI:
         version=settings.app_version,
         debug=settings.debug,
     )
-    for i in routers:
-        application.include_router(i)
+    for router in routers:
+        application.include_router(router)
     return application
 
 

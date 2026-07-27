@@ -7,12 +7,12 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env", env_file_encoding="utf-8", extra="ignore"
     )
-    app_name: str = "Psycho Navigator API"
-    app_version: str = "1.0.0"
+    app_name: str = "PsychoNavigator API"
+    app_version: str = "0.1.0"
     app_environment: Literal["local", "test", "production"] = "local"
-    debug: bool = True
+    debug: bool = False
 
 
-@lru_cache
+@lru_cache()
 def get_settings() -> Settings:
     return Settings()

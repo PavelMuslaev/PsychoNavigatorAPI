@@ -21,12 +21,10 @@ def clear_settings_cache() -> Iterator[None]:
 
 
 @pytest.fixture()
-def settings(
-    monkeypatch: pytest.MonkeyPatch,
-) -> Settings:
-    monkeypatch.setenv("APP_NAME", "Test API")
-    monkeypatch.setenv("APP_VERSION", "3.0.0")
-    monkeypatch.setenv("APP_ENVIRONMENT", "test")
-    monkeypatch.setenv("DEBUG", "True")
-
-    return Settings()
+def settings() -> Settings:
+    return Settings(
+        app_name="Test API",
+        app_version="3.0.0",
+        app_environment="test",
+        debug=True,
+    )
