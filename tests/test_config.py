@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from src.psycho_navigator.config import get_settings
+from psycho_navigator.config import get_settings
 
 
 def test_get_settings_read_env(
@@ -17,7 +17,7 @@ def test_get_settings_read_env(
     assert settings.app_name == "Test API"
     assert settings.app_version == "2.0.0"
     assert settings.app_environment == "test"
-    assert settings.debug == True
+    assert settings.debug is True
 
 
 def test_get_settings_rejects_unknown_environment(

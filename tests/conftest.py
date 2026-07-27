@@ -2,7 +2,7 @@ import pytest
 import time
 from collections.abc import Iterator
 
-from src.psycho_navigator.config import get_settings, Settings
+from psycho_navigator.config import get_settings, Settings
 
 
 @pytest.fixture(autouse=True)
@@ -21,10 +21,12 @@ def clear_settings_cache() -> Iterator[None]:
 
 
 @pytest.fixture()
-def settings() -> Settings:
-    return Settings(
-        app_name="Test API",
-        app_version="3.0.0",
-        app_environment="test",
-        debug=True,
-    )
+def settings(
+    monkeypatch: pytest.MonkeyPatch,
+) -> Settings:
+    monkeypatch.setenv("APP_NAME", "Test API")
+    monkeypatch.setenv("APP_VERSION", "3.0.0")
+    monkeypatch.setenv("APP_ENVIRONMENT", "test")
+    monkeypatch.setenv("DEBUG", "True")
+
+    return Settings()

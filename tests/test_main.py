@@ -1,4 +1,4 @@
-from src.psycho_navigator.main import create_app
+from psycho_navigator.main import create_app
 
 
 def test_create_app(settings):
