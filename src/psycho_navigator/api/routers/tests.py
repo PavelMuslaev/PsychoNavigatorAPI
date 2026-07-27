@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Path, HTTPException, status
 from typing import Annotated
 
-from psycho_navigator.schemas.tests import TestResponse
-from psycho_navigator.data.tests import tests, Test
+from psycho_navigator.schemas.tests import TestResponse, Test
 
 router = APIRouter(prefix="/tests", tags=["tests"])
 
