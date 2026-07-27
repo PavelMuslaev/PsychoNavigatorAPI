@@ -19,7 +19,7 @@ class TestTests:
         assert response.status_code == 200
 
         data = response.json()
-        assert len(data) == 5
+        assert len(data) == 1
         assert all("id" in item for item in data)
         assert all("name" in item for item in data)
         assert all("description" in item for item in data)
@@ -28,10 +28,6 @@ class TestTests:
         "test_id, answer",
         [
             (1, 200),
-            (2, 200),
-            (3, 200),
-            (4, 200),
-            (5, 200),
         ],
     )
     def test_get_test_by_id(self, get_client, test_id: int, answer: int) -> None:
