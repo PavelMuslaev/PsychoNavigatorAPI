@@ -1,6 +1,10 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from typing import Literal
+from typing import Literal, Final
 from functools import lru_cache
+from pathlib import Path
+
+
+PACKAGE_DIR: Final = Path(__file__).resolve().parent
 
 
 class Settings(BaseSettings):
@@ -11,6 +15,7 @@ class Settings(BaseSettings):
     app_version: str = "0.1.0"
     app_environment: Literal["local", "test", "production"] = "local"
     debug: bool = False
+    path_dir_tests: Path = PACKAGE_DIR / "data" / "tests"
 
 
 @lru_cache()
