@@ -17,10 +17,6 @@ class TestResponse(BaseModel):
     name: str = Field(description="Name of the test.")
     description: str = Field(description="Description of the test.")
     instructions: str = Field(description="Instructions of the test.")
-    answer_scale: list[AnswerScaleType] = Field(
-        description="Answer scales of the test."
-    )
-    questions: list[QuestionType] = Field(description="Questions of the test.")
 
     @field_validator("name", "description", "instructions")
     @classmethod
@@ -28,3 +24,10 @@ class TestResponse(BaseModel):
         if not (normalized := value.strip()):
             raise ValueError(f"{info.field_name} can not be empty.")
         return normalized
+
+
+class QuestionnaireResponse(TestResponse):
+    answer_scale: list[AnswerScaleType] = Field(
+        description="Answer scales of the test."
+    )
+    questions: list[QuestionType] = Field(description="Questions of the test.")

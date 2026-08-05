@@ -25,15 +25,16 @@ class TestTests:
         assert all("description" in item for item in data)
 
     @pytest.mark.parametrize(
-        "test_id, answer",
+        "test_id, answer, quantity_question",
         [
-            (1, 200),
+            (1, 200, 60),
         ],
     )
-    def test_get_test_by_id(self, get_client, test_id: int, answer: int) -> None:
+    def test_get_test_by_id(self, get_client, test_id: int, answer: int, quantity_question: int) -> None:
         response = get_client.get(f"/tests/{test_id}")
         assert response.status_code == answer
         assert response.json()["id"] == test_id
+        assert len(response.json()["questions"] )== quantity_question
 
     @pytest.mark.parametrize(
         "test_id, answer",
