@@ -18,7 +18,7 @@ router = APIRouter(prefix="/tests", tags=["tests"])
 
 async def get_questionnaires(
     request: Request,
-):
+) -> QuestionnaireCollection:
     return request.app.state.questionnaires
 
 

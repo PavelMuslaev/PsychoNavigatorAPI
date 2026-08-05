@@ -14,10 +14,10 @@ def read_questionnaire(path: Path) -> QuestionnaireResponse:
     try:
         with path.open(encoding="utf-8") as f:
             data = json.load(f)
-    except (OSError, json.JSONDecodeError, ValidationError) as exc:
-        raise OSError(f"Failed to load questionnaire from {path}") from exc
-    else:
+
         return QuestionnaireResponse.model_validate(data)
+    except (OSError, json.JSONDecodeError, ValidationError) as exc:
+        raise RuntimeError(f"Failed to load questionnaire from {path}") from exc
 
 
 def load_questionnaires(
