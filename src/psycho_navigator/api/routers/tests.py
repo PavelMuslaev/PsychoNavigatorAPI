@@ -25,8 +25,8 @@ async def get_questionnaires(
 QuestionnaireDepends = Annotated[QuestionnaireCollection, Depends(get_questionnaires)]
 
 
-@router.get("", response_model=tuple[TestResponse, ...])
-async def get_tests(questionnaires: QuestionnaireDepends) -> tuple[TestResponse, ...]:
+@router.get("", response_model=list[TestResponse])
+async def get_tests(questionnaires: QuestionnaireDepends) -> list[TestResponse]:
     return questionnaires
 
 

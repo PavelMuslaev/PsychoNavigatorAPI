@@ -46,9 +46,9 @@ class QuestionnaireResponse(TestResponse):
     @field_validator("instructions")
     @classmethod
     def validate_instructions(
-            cls,
-            value: str,
-            info: ValidationInfo,
+        cls,
+        value: str,
+        info: ValidationInfo,
     ) -> str:
         if not (normalized := value.strip()):
             raise ValueError(f"{info.field_name} can not be empty.")
