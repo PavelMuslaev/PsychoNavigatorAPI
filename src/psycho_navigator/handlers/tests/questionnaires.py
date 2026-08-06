@@ -7,7 +7,7 @@ from pydantic import ValidationError
 from psycho_navigator.schemas.tests import QuestionnaireResponse
 
 
-QuestionnaireCollection = tuple[QuestionnaireResponse, ...]
+QuestionnaireCollection = list[QuestionnaireResponse]
 
 
 def read_questionnaire(path: Path) -> QuestionnaireResponse:
@@ -31,6 +31,6 @@ def load_questionnaires(
         raise RuntimeError(f"No questionnaire JSON files found in {dir_path}")
 
     with ThreadPoolExecutor(max_workers) as pool:
-        tests = tuple(pool.map(read_questionnaire, paths))
+        tests = list(pool.map(read_questionnaire, paths))
 
     return tests
