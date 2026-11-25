@@ -18,8 +18,8 @@ FULL_RESPONSE_FIELDS = {
 }
 ANSWER_OPTION_FIELDS = {"value", "label"}
 QUESTION_FIELDS = {"id", "text"}
-SCORING_FIELDS = {"scoring", "scoring_key", "score", "reverse_scored"}
-EXPECTED_QUESTION_IDS = [*range(1, 60), 61]
+SCORING_FIELDS = {"scoring", "scoring_key", "score", "reverse_scored", "reverse", "domain", "facet"}
+EXPECTED_QUESTION_IDS = [*range(1, 28), *range(29, 62)]
 
 
 @pytest.fixture(scope="session")
@@ -77,9 +77,9 @@ class TestTests:
 
         question_ids = [question["id"] for question in response.json()["questions"]]
         assert question_ids == EXPECTED_QUESTION_IDS
-        assert 28 in question_ids
+        assert 28 not in question_ids
         assert 61 in question_ids
-        assert 60 not in question_ids
+        assert 60 in question_ids
 
     def test_get_test_by_id_returns_answer_scale_in_order(self, get_client) -> None:
         response = get_client.get("/tests/1")

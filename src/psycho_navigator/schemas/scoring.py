@@ -58,3 +58,15 @@ class Bfi2Key(BaseModel):
         min_length=60,
         max_length=60,
     )
+
+    @model_validator(mode="after")
+    def validate_structure(self) -> Self:
+        from collections import Counter
+
+        ids = [entry.question_id for entry in self.items]
+        if len(set(ids)) != len(ids):
+            raise ValueError("Duplicate question IDs in BFI-2 key")
+        facets = Counter(entry.facet for entry in self.items)
+        if any(facets[code] != 4 for code in FacetCode):
+            raise ValueError("Each BFI-2 facet must contain four items")
+        return self

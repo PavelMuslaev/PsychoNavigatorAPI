@@ -1,0 +1,364 @@
+{
+  "items": [
+    {
+      "question_id": 1,
+      "domain": "E",
+      "facet": "E1",
+      "reverse": false
+    },
+    {
+      "question_id": 2,
+      "domain": "A",
+      "facet": "A1",
+      "reverse": false
+    },
+    {
+      "question_id": 3,
+      "domain": "C",
+      "facet": "C1",
+      "reverse": true
+    },
+    {
+      "question_id": 4,
+      "domain": "N",
+      "facet": "N1",
+      "reverse": true
+    },
+    {
+      "question_id": 5,
+      "domain": "O",
+      "facet": "O1",
+      "reverse": true
+    },
+    {
+      "question_id": 6,
+      "domain": "E",
+      "facet": "E2",
+      "reverse": false
+    },
+    {
+      "question_id": 7,
+      "domain": "A",
+      "facet": "A2",
+      "reverse": false
+    },
+    {
+      "question_id": 8,
+      "domain": "C",
+      "facet": "C2",
+      "reverse": true
+    },
+    {
+      "question_id": 9,
+      "domain": "N",
+      "facet": "N2",
+      "reverse": true
+    },
+    {
+      "question_id": 10,
+      "domain": "O",
+      "facet": "O2",
+      "reverse": false
+    },
+    {
+      "question_id": 11,
+      "domain": "E",
+      "facet": "E3",
+      "reverse": true
+    },
+    {
+      "question_id": 12,
+      "domain": "A",
+      "facet": "A3",
+      "reverse": true
+    },
+    {
+      "question_id": 13,
+      "domain": "C",
+      "facet": "C3",
+      "reverse": false
+    },
+    {
+      "question_id": 14,
+      "domain": "N",
+      "facet": "N3",
+      "reverse": false
+    },
+    {
+      "question_id": 15,
+      "domain": "O",
+      "facet": "O3",
+      "reverse": false
+    },
+    {
+      "question_id": 16,
+      "domain": "E",
+      "facet": "E1",
+      "reverse": true
+    },
+    {
+      "question_id": 17,
+      "domain": "A",
+      "facet": "A1",
+      "reverse": true
+    },
+    {
+      "question_id": 18,
+      "domain": "C",
+      "facet": "C1",
+      "reverse": false
+    },
+    {
+      "question_id": 19,
+      "domain": "N",
+      "facet": "N1",
+      "reverse": false
+    },
+    {
+      "question_id": 20,
+      "domain": "O",
+      "facet": "O1",
+      "reverse": false
+    },
+    {
+      "question_id": 21,
+      "domain": "E",
+      "facet": "E2",
+      "reverse": false
+    },
+    {
+      "question_id": 22,
+      "domain": "A",
+      "facet": "A2",
+      "reverse": true
+    },
+    {
+      "question_id": 23,
+      "domain": "C",
+      "facet": "C2",
+      "reverse": true
+    },
+    {
+      "question_id": 24,
+      "domain": "N",
+      "facet": "N2",
+      "reverse": true
+    },
+    {
+      "question_id": 25,
+      "domain": "O",
+      "facet": "O2",
+      "reverse": true
+    },
+    {
+      "question_id": 26,
+      "domain": "E",
+      "facet": "E3",
+      "reverse": true
+    },
+    {
+      "question_id": 27,
+      "domain": "A",
+      "facet": "A3",
+      "reverse": false
+    },
+    {
+      "question_id": 29,
+      "domain": "N",
+      "facet": "N3",
+      "reverse": true
+    },
+    {
+      "question_id": 30,
+      "domain": "O",
+      "facet": "O3",
+      "reverse": true
+    },
+    {
+      "question_id": 31,
+      "domain": "E",
+      "facet": "E1",
+      "reverse": true
+    },
+    {
+      "question_id": 32,
+      "domain": "A",
+      "facet": "A1",
+      "reverse": false
+    },
+    {
+      "question_id": 33,
+      "domain": "C",
+      "facet": "C1",
+      "reverse": false
+    },
+    {
+      "question_id": 34,
+      "domain": "N",
+      "facet": "N1",
+      "reverse": false
+    },
+    {
+      "question_id": 35,
+      "domain": "O",
+      "facet": "O1",
+      "reverse": false
+    },
+    {
+      "question_id": 36,
+      "domain": "E",
+      "facet": "E2",
+      "reverse": true
+    },
+    {
+      "question_id": 37,
+      "domain": "A",
+      "facet": "A2",
+      "reverse": true
+    },
+    {
+      "question_id": 38,
+      "domain": "C",
+      "facet": "C2",
+      "reverse": false
+    },
+    {
+      "question_id": 39,
+      "domain": "N",
+      "facet": "N2",
+      "reverse": false
+    },
+    {
+      "question_id": 40,
+      "domain": "O",
+      "facet": "O2",
+      "reverse": false
+    },
+    {
+      "question_id": 41,
+      "domain": "E",
+      "facet": "E3",
+      "reverse": false
+    },
+    {
+      "question_id": 42,
+      "domain": "A",
+      "facet": "A3",
+      "reverse": true
+    },
+    {
+      "question_id": 43,
+      "domain": "C",
+      "facet": "C3",
+      "reverse": false
+    },
+    {
+      "question_id": 44,
+      "domain": "N",
+      "facet": "N3",
+      "reverse": true
+    },
+    {
+      "question_id": 45,
+      "domain": "O",
+      "facet": "O3",
+      "reverse": true
+    },
+    {
+      "question_id": 46,
+      "domain": "E",
+      "facet": "E1",
+      "reverse": false
+    },
+    {
+      "question_id": 47,
+      "domain": "A",
+      "facet": "A1",
+      "reverse": true
+    },
+    {
+      "question_id": 48,
+      "domain": "C",
+      "facet": "C1",
+      "reverse": true
+    },
+    {
+      "question_id": 49,
+      "domain": "N",
+      "facet": "N1",
+      "reverse": true
+    },
+    {
+      "question_id": 50,
+      "domain": "O",
+      "facet": "O1",
+      "reverse": true
+    },
+    {
+      "question_id": 51,
+      "domain": "E",
+      "facet": "E2",
+      "reverse": true
+    },
+    {
+      "question_id": 52,
+      "domain": "A",
+      "facet": "A2",
+      "reverse": false
+    },
+    {
+      "question_id": 53,
+      "domain": "C",
+      "facet": "C2",
+      "reverse": false
+    },
+    {
+      "question_id": 54,
+      "domain": "N",
+      "facet": "N2",
+      "reverse": false
+    },
+    {
+      "question_id": 55,
+      "domain": "O",
+      "facet": "O2",
+      "reverse": true
+    },
+    {
+      "question_id": 56,
+      "domain": "E",
+      "facet": "E3",
+      "reverse": false
+    },
+    {
+      "question_id": 57,
+      "domain": "A",
+      "facet": "A3",
+      "reverse": false
+    },
+    {
+      "question_id": 58,
+      "domain": "C",
+      "facet": "C3",
+      "reverse": true
+    },
+    {
+      "question_id": 59,
+      "domain": "N",
+      "facet": "N3",
+      "reverse": false
+    },
+    {
+      "question_id": 60,
+      "domain": "O",
+      "facet": "O3",
+      "reverse": false
+    },
+    {
+      "question_id": 61,
+      "domain": "C",
+      "facet": "C3",
+      "reverse": true
+    }
+  ]
+}
