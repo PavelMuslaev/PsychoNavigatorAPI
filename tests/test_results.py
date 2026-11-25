@@ -54,7 +54,7 @@ def test_reject_invalid_answers(client, change):
     assert client.post("/tests/1/results", json={"answers": data}).status_code == 422
 
 
-@pytest.mark.parametrize(("path", "status"), [("0", 422), ("abc", 422), ("2", 404)])
+@pytest.mark.parametrize(("path", "status"), [("0", 422), ("abc", 422), ("3", 404)])
 def test_unknown_test(client, path, status):
     assert client.post(f"/tests/{path}/results", json={"answers": answers()}).status_code == status
 

@@ -45,7 +45,7 @@ class TestTests:
         assert response.status_code == 200
 
         data = response.json()
-        assert len(data) == 1
+        assert {item["id"] for item in data} == {1, 2}
         assert set(data[0]) == SUMMARY_FIELDS
         assert all("id" in item for item in data)
         assert all("name" in item for item in data)
@@ -56,6 +56,7 @@ class TestTests:
         "test_id, answer, quantity_question",
         [
             (1, 200, 60),
+            (2, 200, 57),
         ],
     )
     def test_get_test_by_id(

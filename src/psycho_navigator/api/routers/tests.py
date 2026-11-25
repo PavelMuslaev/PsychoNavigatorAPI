@@ -33,7 +33,7 @@ async def get_tests(questionnaires: QuestionnaireDepends) -> list[TestResponse]:
     return questionnaires
 
 
-@router.get("/{test_id}", response_model=QuestionnaireResponse)
+@router.get("/{test_id}", response_model=QuestionnaireResponse, response_model_exclude_none=True)
 async def get_test(
     test_id: Annotated[int, PathParam(ge=1)],
     questionnaires: QuestionnaireDepends,
