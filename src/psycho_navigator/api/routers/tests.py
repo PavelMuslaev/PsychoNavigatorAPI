@@ -9,6 +9,8 @@ from fastapi import (
     Request,
 )
 
+from psycho_navigator.handlers.results import QuestionnaireScorer, validate_answers
+from psycho_navigator.schemas.results import QuestionnaireResultRequest, QuestionnaireResultResponse
 from psycho_navigator.handlers.tests.questionnaires import QuestionnaireCollection
 from psycho_navigator.schemas.tests import TestResponse, QuestionnaireResponse
 
@@ -40,3 +42,21 @@ async def get_test(
             return test
 
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Test not found.")
+
+
+@router.post("/{test_id}/results", response_model=QuestionnaireResultResponse)
+async def calculate_result(
+    test_id: Annotated[int, PathParam(ge=1)],
+    submission: QuestionnaireResultRequest,
+    questionnaires: QuestionnaireDepends,
+    request: Request,
+) -> QuestionnaireResultResponse:
+    test = await get_test(test_id, questionnaires)
+    scorers: dict[int, QuestionnaireScorer] = request.app.state.scorers
+    if test_id not in scorers:
+        raise HTTPException(status_code=501, detail="Scoring unavailable for this test")
+    try:
+        answers = validate_answers(test, submission.answers)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=error.args[0]) from error
+    return QuestionnaireResultResponse(test_id=test_id, domains=scorers[test_id].score(answers))
