@@ -2,6 +2,8 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, APIRouter
+from sqlalchemy import create_engine
+from psycho_navigator.history import database_url
 
 from psycho_navigator.handlers.results import Bfi2Scorer
 from psycho_navigator.handlers.scoring import load_bfi2_key
@@ -19,7 +21,12 @@ def create_app(settings: Settings, *routers: APIRouter) -> FastAPI:
             settings.scoring_key_path, application.state.questionnaires
         )
         application.state.scorers = {1: Bfi2Scorer(application.state.bfi2_key)}
-        yield
+        application.state.history_token = settings.history_token
+        application.state.db = create_engine(database_url(settings.database_path))
+        try:
+            yield
+        finally:
+            application.state.db.dispose()
 
     application = FastAPI(
         title=settings.app_name,
