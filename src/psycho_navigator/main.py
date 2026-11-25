@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, APIRouter
 
+from psycho_navigator.handlers.results import Bfi2Scorer
 from psycho_navigator.handlers.scoring import load_bfi2_key
 from psycho_navigator.config import get_settings, Settings
 from psycho_navigator.api.routers import get_router
@@ -17,6 +18,7 @@ def create_app(settings: Settings, *routers: APIRouter) -> FastAPI:
         application.state.bfi2_key = load_bfi2_key(
             settings.scoring_key_path, application.state.questionnaires
         )
+        application.state.scorers = {1: Bfi2Scorer(application.state.bfi2_key)}
         yield
 
     application = FastAPI(
