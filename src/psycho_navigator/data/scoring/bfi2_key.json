@@ -27,7 +27,7 @@
     {
       "question_id": 5,
       "domain": "O",
-      "facet": "O1",
+      "facet": "O2",
       "reverse": true
     },
     {
@@ -57,7 +57,7 @@
     {
       "question_id": 10,
       "domain": "O",
-      "facet": "O2",
+      "facet": "O1",
       "reverse": false
     },
     {
@@ -117,7 +117,7 @@
     {
       "question_id": 20,
       "domain": "O",
-      "facet": "O1",
+      "facet": "O2",
       "reverse": false
     },
     {
@@ -147,7 +147,7 @@
     {
       "question_id": 25,
       "domain": "O",
-      "facet": "O2",
+      "facet": "O1",
       "reverse": true
     },
     {
@@ -201,7 +201,7 @@
     {
       "question_id": 35,
       "domain": "O",
-      "facet": "O1",
+      "facet": "O2",
       "reverse": false
     },
     {
@@ -231,7 +231,7 @@
     {
       "question_id": 40,
       "domain": "O",
-      "facet": "O2",
+      "facet": "O1",
       "reverse": false
     },
     {
@@ -291,7 +291,7 @@
     {
       "question_id": 50,
       "domain": "O",
-      "facet": "O1",
+      "facet": "O2",
       "reverse": true
     },
     {
@@ -321,7 +321,7 @@
     {
       "question_id": 55,
       "domain": "O",
-      "facet": "O2",
+      "facet": "O1",
       "reverse": true
     },
     {

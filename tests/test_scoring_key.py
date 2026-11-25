@@ -29,3 +29,12 @@ def test_invalid_key(settings, tmp_path, patch):
     path.write_text(json.dumps(payload))
     with pytest.raises(RuntimeError, match="Invalid BFI-2 configuration"):
         load_bfi2_key(path, load_questionnaires(settings.path_dir_tests))
+
+
+@pytest.mark.parametrize(("facet", "expected"), [
+    ("O1", {10: False, 25: True, 40: False, 55: True}),
+    ("O2", {5: True, 20: False, 35: False, 50: True}),
+])
+def test_openness_facet_key(settings, facet, expected):
+    key = load_bfi2_key(settings.scoring_key_path, load_questionnaires(settings.path_dir_tests))
+    assert {e.question_id: e.reverse for e in key.items if e.facet == facet} == expected
