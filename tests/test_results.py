@@ -62,3 +62,15 @@ def test_unknown_test(client, path, status):
 def test_missing_scorer(client, monkeypatch):
     monkeypatch.delitem(app.state.scorers, 1)
     assert client.post("/tests/1/results", json={"answers": answers()}).status_code == 501
+
+
+@pytest.mark.parametrize(("question_id", "facet_score", "domain_score"), [
+    (1, 3.5, 3.17),
+    (16, 2.5, 2.83),
+])
+def test_direction_of_individual_item(client, question_id, facet_score, domain_score):
+    values = {a["question_id"]: 3 for a in answers()}
+    values[question_id] = 5
+    first = Bfi2Scorer(app.state.bfi2_key).score(values)[0]
+    assert first.facets[0].score == facet_score
+    assert first.score == domain_score
