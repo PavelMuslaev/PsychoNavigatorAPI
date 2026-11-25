@@ -74,3 +74,19 @@ def test_direction_of_individual_item(client, question_id, facet_score, domain_s
     first = Bfi2Scorer(app.state.bfi2_key).score(values)[0]
     assert first.facets[0].score == facet_score
     assert first.score == domain_score
+
+
+def test_openness_facet_scores(client):
+    payload = answers()
+    values = {10: 5, 25: 1, 40: 5, 55: 1}
+    for answer in payload:
+        answer["value"] = values.get(answer["question_id"], 3)
+
+    response = client.post("/tests/1/results", json={"answers": payload})
+    assert response.status_code == 200
+    openness = next(domain for domain in response.json()["domains"] if domain["code"] == "O")
+    assert openness["facets"] == [
+        {"code": "O1", "name": "Любознательность", "score": 5.0},
+        {"code": "O2", "name": "Эстетичность", "score": 3.0},
+        {"code": "O3", "name": "Творческое воображение", "score": 3.0},
+    ]
