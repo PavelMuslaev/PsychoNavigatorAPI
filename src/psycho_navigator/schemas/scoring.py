@@ -31,7 +31,7 @@ class DomainCode(StrEnum):
     A = "A"
     C = "C"
     N = "N"
-    O = "O"
+    OPENNESS = "O"
 
 
 class ScoringKeyEntry(BaseModel):
