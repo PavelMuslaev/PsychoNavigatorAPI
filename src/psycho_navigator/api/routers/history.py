@@ -12,6 +12,7 @@ from sqlalchemy.dialects.sqlite import insert
 from psycho_navigator.api.routers.tests import calculate_result
 from psycho_navigator.history import attempts, users
 from psycho_navigator.schemas.results import (
+    EpiResult,
     QuestionnaireResultRequest,
     QuestionnaireResultResponse,
 )
@@ -46,7 +47,7 @@ class AttemptSummary(BaseModel):
 
 
 class SavedAttempt(AttemptSummary):
-    profile: QuestionnaireResultResponse
+    profile: QuestionnaireResultResponse | EpiResult
 
 
 def owner_id(telegram_id):
@@ -98,10 +99,12 @@ async def save(
     telegram_id: Owner,
     attempt_id: UUID,
     submission: QuestionnaireResultRequest,
+    test_id: Annotated[int, Query(ge=1, le=2)] = 1,
 ):
     tests = request.app.state.questionnaires
-    profile = await calculate_result(1, submission, tests, request)
-    name = next(test.name for test in tests if test.id == 1)
+    profile = await calculate_result(test_id, submission, tests, request)
+    name = next(test.name for test in tests if test.id == test_id)
+    code, version = {1: ("BFI-2", "B-1"), 2: ("EPI", "A-1")}[test_id]
 
     def persist():
         with request.app.state.db.begin() as conn:
@@ -115,14 +118,17 @@ async def save(
                 .values(
                     user_id=owner_id(telegram_id),
                     attempt_id=str(attempt_id),
-                    test_code="BFI-2",
-                    version="B-1",
+                    test_code=code,
+                    version=version,
                     completed_at=datetime.now(UTC).isoformat(),
                     test_name=name,
                     profile=profile.model_dump(mode="json"),
                 )
                 .on_conflict_do_nothing(index_elements=["user_id", "attempt_id"])
             )
-            return lookup(conn, telegram_id, attempt_id)
+            saved = lookup(conn, telegram_id, attempt_id)
+            if saved["test_code"] != code:
+                raise HTTPException(409, "Attempt belongs to another questionnaire")
+            return saved
 
     return await run_in_threadpool(persist)

@@ -60,3 +60,20 @@ def test_history_lifecycle(tmp_path, monkeypatch):
             == second["attempt_id"]
         )
         assert api.get(path + "?limit=51", headers=headers).status_code == 422
+
+        epi_path = path + "/" + str(uuid4())
+        epi = {"answers": [{"question_id": i, "value": 1} for i in range(1, 58)]}
+        def save_epi(url, body):
+            return api.post(url, params={"test_id": 2}, json=body, headers=headers)
+        assert save_epi(epi_path, {"answers": []}).status_code == 422
+        assert api.get(epi_path, headers=headers).status_code == 404
+        assert save_epi(path + attempt, epi).status_code == 409
+        saved = save_epi(epi_path, epi).json()
+        assert saved["profile"] == api.post("/tests/2/results", json=epi).json()
+        assert save_epi(epi_path, epi).json() == saved
+    with client() as api:
+        assert api.get(epi_path, headers=headers).json() == saved
+        assert api.get(path + attempt, headers=headers).json() == first
+        rows = api.get(path, headers=headers).json()
+        assert len(rows) == 3 and rows[0]["attempt_id"] == saved["attempt_id"]
+        assert api.get(epi_path.replace("/users/1/", "/users/2/"), headers=headers).status_code == 404
