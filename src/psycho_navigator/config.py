@@ -15,6 +15,8 @@ class Settings(BaseSettings):
     app_version: str = "0.1.0"
     app_environment: Literal["local", "test", "production"] = "local"
     debug: bool = False
+    database_path: Path = Path("history.sqlite3")
+    history_token: str = ""
     scoring_key_path: Path = PACKAGE_DIR / "data/scoring/bfi2_key.json"
     path_dir_tests: Path = PACKAGE_DIR / "data" / "tests"
 

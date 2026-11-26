@@ -30,3 +30,27 @@ def test_epi_api():
         assert submit(answers).json()["extraversion"] == 16
         for invalid in [answers[:-1], answers + [answers[0]], [*answers[:-1], dict(question_id=57, value=3)]]:
             assert submit(invalid).status_code == 422
+
+
+@pytest.mark.parametrize(
+    ("habits", "guilt", "neuroticism", "control"),
+    [(1, 2, 23, 3), (2, 1, 24, 2)],
+)
+def test_epi_habits_and_guilt_score_different_scales(
+    habits, guilt, neuroticism, control
+):
+    from fastapi.testclient import TestClient
+    from psycho_navigator.main import app
+
+    overrides = {23: habits, 24: guilt}
+    answers = [{"question_id": i, "value": overrides.get(i, 1)} for i in range(1, 58)]
+    with TestClient(app) as client:
+        response = client.post("/tests/2/results", json={"answers": answers})
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "test_id": 2,
+        "extraversion": 15,
+        "neuroticism": neuroticism,
+        "control": control,
+    }
