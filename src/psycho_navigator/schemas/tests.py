@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field, field_validator, ValidationInfo
 class Question(BaseModel):
     id: int = Field(ge=1)
     text: str
+    answer_scale: list["AnswerOption"] | None = None
 
     @field_validator("text")
     @classmethod
