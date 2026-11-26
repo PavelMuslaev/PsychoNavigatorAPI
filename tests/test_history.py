@@ -77,3 +77,13 @@ def test_history_lifecycle(tmp_path, monkeypatch):
         rows = api.get(path, headers=headers).json()
         assert len(rows) == 3 and rows[0]["attempt_id"] == saved["attempt_id"]
         assert api.get(epi_path.replace("/users/1/", "/users/2/"), headers=headers).status_code == 404
+
+        for url in (epi_path, path + attempt):
+            assert api.delete(url).status_code == 401
+            foreign = api.delete(url.replace("/users/1/", "/users/2/"), headers=headers)
+            assert foreign.status_code == 404
+            assert api.delete(url, headers=headers).status_code == 204
+            repeated = api.delete(url, headers=headers)
+            assert repeated.status_code == 404 and repeated.json() == foreign.json()
+            assert api.get(url, headers=headers).status_code == 404
+        assert [row["attempt_id"] for row in api.get(path, headers=headers).json()] == [second["attempt_id"]]
