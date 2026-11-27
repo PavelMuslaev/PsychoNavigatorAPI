@@ -132,3 +132,14 @@ async def save(
             return saved
 
     return await run_in_threadpool(persist)
+
+
+@router.delete("/{attempt_id}", status_code=204)
+def delete_attempt(request: Request, telegram_id: Owner, attempt_id: UUID):
+    with request.app.state.db.begin() as conn:
+        result = conn.execute(attempts.delete().where(
+            attempts.c.user_id == owner_id(telegram_id),
+            attempts.c.attempt_id == str(attempt_id),
+        ))
+        if not result.rowcount:
+            raise HTTPException(404, "Attempt not found")
